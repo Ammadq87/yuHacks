@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Only space in the middle of input. no space infront of text-->
+    <!-- ex:eecs 2031,math 2030,eecs 1019 -->
+    <input type="text" id="input"> <!-- Example Input:eecs 2030-->
+    <button onclick="start()">Enter</button>
+    <p id="name"></p>
+
+    <script>
+
+        function start(){
+    
+            // Gather input from user and split input into department and code
+            let codeName = document.getElementById('input').value;
+            const course = codeName.split(' ');
+            let dept = course[0]+".json";
+            let code = course[1]; 
+
+            // Create url based on the department
+            let url = 'https://raw.githubusercontent.com/SSADC-at-york/Yoki/main/docs/data/courses/'+dept;
+
+            async function getThing(){
+                const res = await fetch(url);
+                const data = await res.json();
+                // Outputs information about the course onto page based on 'code'
+                for (let i=0; i<data.courses.length; i++){
+                    // Find a better way of handling data
+                    if (data.courses[i].code === code){
+                        document.getElementById("name").innerHTML = "Code: "+data.courses[i].code +"<br> Credit: "+ data.courses[i].credit + "<br>Dept: " + data.courses[i].dept + "<br>Description: " + data.courses[i].desc + "<br>Course Name: " + data.courses[i].name;            
+                        console.log(data.courses[i]);
+                        break;
+                    }
+                }
+            }
+            getThing();
+        }
+        
+    </script>
+</body>
+</html>
