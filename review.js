@@ -1,4 +1,40 @@
+function start(){
+    // Gather input from user and split input into department and code
+    let codeName = document.getElementById('input').value;
+    const course = codeName.split(' ');
+    let dept = course[0]+".json";
+    let code = course[1]; 
+
+    // Create url based on the department
+    let url = 'https://raw.githubusercontent.com/SSADC-at-york/Yoki/main/docs/data/courses/'+dept;
+
+    let table = document.getElementById('table');
+
+    async function getThing(){
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        // Outputs information about the course onto page based on 'code'
+        for (let i=0; i<data.courses.length; i++){
+            // Find a better way of handling data
+            if (data.courses[i].code === code){
+
+                if (table[0][1] == null){
+                    console.log(i);
+                }
+
+
+                document.getElementById("name").innerHTML = "Code: "+data.courses[i].code +"<br> Credit: "+ data.courses[i].credit + "<br>Dept: " + data.courses[i].dept + "<br>Description: " + data.courses[i].desc + "<br>Course Name: " + data.courses[i].name;            
+                console.log(data.courses[i]);
+                break;
+            }
+        }
+    }
+    getThing();
+  }
+
 let movies = [];
+let colors = ['lightskyblue','lavenderblush','palegreen','salmon','aquamarine', 'aqua', 'pink', 'plum', 'peachpuff', 'moccasin'] ;
 
 // example {id:1592304983049, title: 'Deadpool', year: 2015}
 const addMovie = (ev)=>{
@@ -59,9 +95,10 @@ function createPosts(m, d){
     const post = document.createElement('div');
     post.setAttribute('class', 'post');
     post.innerHTML = "<p> "+name+" says: "+m+", "+d+"</p>";
-    post.style.width = '100px';
-    post.style.height = '100px';
-    post.style.background = 'blue';
+    post.style.fontSize = '1.25rem'
+    post.style.width = '700px';
+    post.style.height = '50px';
+    post.style.background = colors[Math.floor(Math.random() * 6)];
 
     // Append post
     const posts = document.getElementById('posts');
