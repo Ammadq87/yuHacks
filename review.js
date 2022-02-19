@@ -1,3 +1,5 @@
+let index = -1;
+
 function start(){
     // Gather input from user and split input into department and code
     let codeName = document.getElementById('input').value;
@@ -19,19 +21,45 @@ function start(){
             // Find a better way of handling data
             if (data.courses[i].code === code){
 
-                if (table[0][1] == null){
-                    console.log(i);
-                }
 
-
-                document.getElementById("name").innerHTML = "Code: "+data.courses[i].code +"<br> Credit: "+ data.courses[i].credit + "<br>Dept: " + data.courses[i].dept + "<br>Description: " + data.courses[i].desc + "<br>Course Name: " + data.courses[i].name;            
-                console.log(data.courses[i]);
+                createRow(data.courses[i].name,data.courses[i].code,data.courses[i].dept);
+                // document.getElementById("name").innerHTML = "Code: "+data.courses[i].code +"<br> Credit: "+ data.courses[i].credit + "<br>Dept: " + data.courses[i].dept + "<br>Description: " + data.courses[i].desc + "<br>Course Name: " + data.courses[i].name;            
+                // console.log(data.courses[i]);
                 break;
             }
         }
     }
     getThing();
-  }
+}
+
+function createRow(name, code, dept){
+    // Craete post
+    const post = document.createElement('div');
+    post.setAttribute('class', 'row');
+    post.innerHTML = "<p> "+name+" "+code+", "+dept+"</p>";
+    post.style.fontSize = '1.25rem'
+    post.style.width = '700px';
+    post.style.height = '50px';
+    post.style.background = "black";
+
+    const table = document.getElementById('table');
+    let profs = ['Jackie','Marzieh', 'Andriy', 'Natasha'];
+    let secs = ['M','N', 'O', 'P'];
+
+
+    var row = table.insertRow(index++);
+
+    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+    cell1.innerHTML = secs[Math.floor(Math.random() * secs.length)];
+    cell2.innerHTML = profs[Math.floor(Math.random() * profs.length)];
+    cell3.innerHTML = dept;
+    cell4.innerHTML = code;
+}
 
 let movies = [];
 let colors = ['lightskyblue','lavenderblush','palegreen','salmon','aquamarine', 'aqua', 'pink', 'plum', 'peachpuff', 'moccasin'] ;
