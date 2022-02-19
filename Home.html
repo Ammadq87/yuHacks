@@ -1,3 +1,5 @@
+
+   
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -13,6 +15,9 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.2.6, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    
+    
+    
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -63,6 +68,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-form u-login-control u-white u-form-1">
           <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 30px;">
+            <h2>Sign-In</h2>
             <div class="u-form-group u-form-name">
               <label for="username-a30d" class="u-label">Username</label>
               <input type="text" placeholder="Enter your Username" id="username-a30d" name="username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-input-1" required="">
@@ -71,35 +77,40 @@
               <label for="password-a30d" class="u-label">Password</label>
               <input type="password" placeholder="Enter your Password" id="password-a30d" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-input-2" required="">
             </div>
-            <div>
-             
-            </div>
+            
             <input type="hidden" value="" name="recaptchaResponse">
           </form>
-
-          <button onclick="window.location.href='About.html' ">
-            Click
-          </button>
+          <div class="u-align-left u-form-group u-form-submit" style="width: 26.5vw; margin: auto;">
+              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-2-base u-btn-1" onclick="authenticate()"">Login</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+          </div>
         </div>
-        <!-- <a href="https://nicepage.com/joomla-templates" class="u-border-active-palette-2-base u-border-hover-palette-2-base u-border-none u-btn u-button-style u-login-control u-login-forgot-password u-text-black u-text-hover-black u-white u-btn-2">Forgot password?</a> -->
+        <!-- <a href="SignUp.html" class="u-border-active-palette-2-base u-border-hover-palette-2-base u-border-none u-btn u-button-style u-login-control u-login-forgot-password u-text-black u-text-hover-black u-white u-btn-2">Forgot password?</a> -->
         <a href="SignUp.html" class="u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-login-control u-login-create-account u-text-black u-text-hover-black u-white u-btn-3">Don't have an account?</a>
-        <button type="button"onclick="saveLoginData()">click</button>
-      
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-a49b">
       <div class="u-clearfix u-sheet u-sheet-1"></div>
     </section>
     
-    
-    
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-e30d"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">yuHacks 2022</p>
       </div></footer>
-    
-      <script src="Home.js">
 
+      <script>
+        function authenticate(){
+          let user_ = localStorage.getItem('user');
+          let user = document.getElementById('username-a30d').value;
+          let pass_ = localStorage.getItem('pass');
+          let pass = document.getElementById('password-a30d').value;
+        
+          if (user === user_ && pass == pass_){
+            window.location.href='About.html';
+          } else {
+            alert('Invalid Username/Password');
+          }
+        }
       </script>
-    
-    </body>
+
+  </body>
 </html>
